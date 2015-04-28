@@ -20,6 +20,8 @@ public class FileSelector implements Window{
 	private FileSelectorConfiguration cfg;
 	/* list of loaded colors */
 	private Color[] colors;
+	/* list of loaded files on location */
+	private FileList fl;
 
 	@Override
 	public void init() {
@@ -89,9 +91,17 @@ public class FileSelector implements Window{
 			}
 		}
 
+		/* generate information about files in said directory */
+		updateFileList();
+
 		/* initialize used colors */
 		colors = new Color[]{
 				new Color("fade.txt"), };
+	}
+
+	/* creates new FileList object with information of files in directory */
+	private void updateFileList() {
+		fl = new FileList(folder);
 	}
 
 	@Override

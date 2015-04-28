@@ -46,20 +46,29 @@ public class Draw {
 		return this;
     }
 
-    /* creates new WindowManager from give JAR path */
-    private WindowManager generateWindowManager(String JARPath) throws IOException, URISyntaxException {
+	/* load libraries required by another library or window */
+	private void loadRequiredLibs(String[] libs) throws IOException, URISyntaxException {
 		/* loop for all libraries required */
-		for(String file : ClassContainer.get().
-				getUnloadedConfig(ClassTools.getJARPath(JARPath), "module.spc").getField("libraries").getValue().split("#")){
+		for (String file : libs) {
 			/* make a file of the absolute address */
 			File f = new File(File.getMainFolder() + file);
 
 			/* make sure file exists and is a file */
-			if(f.exists() && f.isFile()){
+			if (f.exists() && f.isFile()) {
+				/* load required libraries first */
+				loadRequiredLibs(ClassContainer.get().getUnloadedConfig(file, "module.spc").
+						getField("libraries").getValue().split("#"));
 				/* load the library */
 				ClassTools.loadLibrary(f.getFilePath());
 			}
 		}
+	}
+
+    /* creates new WindowManager from give JAR path */
+    private WindowManager generateWindowManager(String JARPath) throws IOException, URISyntaxException {
+				/* load required libraries first */
+		loadRequiredLibs(ClassContainer.get().getUnloadedConfig(ClassTools.getJARPath(JARPath), "module.spc").
+				getField("libraries").getValue().split("#"));
 
         /* make sure the module is loaded */
 		ClassTools.loadModule(JARPath);
@@ -68,11 +77,10 @@ public class Draw {
 
         /* make sure this is correct type of Window */
         if(c.getField("type").getValue().equals(Window.class.getName())) {
-			WindowManager w = new WindowManager((Window) ClassTools.getInstance(
-					ClassContainer.get(ClassTools.getJARPath(JARPath), c.getField("class").getValue())), c, JARPath);
 
             /* finally create new WindowManager */
-            return w;
+            return new WindowManager((Window) ClassTools.getInstance(
+					ClassContainer.get(ClassTools.getJARPath(JARPath), c.getField("class").getValue())), c, JARPath);
         }
 
         /* incorrect type. Send error */

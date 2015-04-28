@@ -326,14 +326,14 @@ public class ProjectMenu implements Window {
 			String name = ProjectTools.getFileName();
 
 			/* search for any Project containing file of the same name */
-		/*	for(Project p : pr){
+			for(Project p : pr){
 				if(p.getLocation().equals(name)){
 					/* update name and select */
-		/*			p.setName(ProjectTools.getValue("name"));
+					p.setName(ProjectTools.getValue("name"));
 					selected = p;
 					return;
 				}
-			}*/
+			}
 
 			/* no project found, create a new one */
 			float start = getTarget(), target = getTarget_(start);
@@ -344,6 +344,8 @@ public class ProjectMenu implements Window {
 
 			/* set position for plus as well */
 			pPlus.setTarget(target + pp.getWidth() + ((PART_VISIBLESIZE - 8) * 2));
+			/* select */
+			selected = pp;
 		}
 	}
 

@@ -75,8 +75,19 @@ public final class File {
 	}
 
 	/* list files at target directory */
-	public String[] listFiles() {
-		return f.list();
+	public File[] listFiles() {
+		return toFiles(f.listFiles());
+	}
+
+	/* quickly convert java.io.File array to soni.plane.api.java.io.File array */
+	private File[] toFiles(java.io.File[] files) {
+		File[] res = new File[files.length];
+
+		for(int i = 0;i < res.length;i ++){
+			res[i] = new File(files[i].getAbsolutePath());
+		}
+
+		return res;
 	}
 
 	/* date at when last modified */
