@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="window.ProjectManager:jar">
+    <output-path>$USER_HOME$/AppData/Roaming/.SoniPlane/modules/window</output-path>
+    <root id="archive" name="ProjectManager.jar">
+      <element id="module-output" name="window.ProjectManager" />
+    </root>
+  </artifact>
+</component>

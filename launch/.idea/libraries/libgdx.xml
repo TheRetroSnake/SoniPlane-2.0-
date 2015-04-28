@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="libgdx">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/AppData/Roaming/.SoniPlane/lib/gdx.jar!/" />
+      <root url="jar://$USER_HOME$/AppData/Roaming/.SoniPlane/lib/gdx-freetype.jar!/" />
+      <root url="jar://$USER_HOME$/AppData/Roaming/.SoniPlane/lib/gdx-backend-lwjgl.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -57,3 +57,5 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+launch/.idea/libraries/slick.xml
+launch/.idea/libraries/lwjgl.xml

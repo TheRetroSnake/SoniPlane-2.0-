@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="window.FileSelector:jar">
+    <output-path>$USER_HOME$/AppData/Roaming/.SoniPlane/modules/window</output-path>
+    <root id="archive" name="FileSelector.jar">
+      <element id="module-output" name="window.FileSelector" />
+    </root>
+  </artifact>
+</component>
