@@ -44,8 +44,9 @@ public class Project {
 			ProjectTools.use(prID);
 			prLoc = ProjectTools.getFileName();
 			prName = ProjectTools.getValue("name");
-			/* set Sprite size according to name */
-			spr.setSize(Font.getWidth(prName), ProjectMenu.DRAW_HEIGHT);
+			/* set Sprite size according to name
+			* TODO: Figure out why needs to multiply by 1.5f to get correct size! */
+			spr.setSize(Font.getWidth(prName) * 1.5f, ProjectMenu.DRAW_HEIGHT);
 		}
 	}
 

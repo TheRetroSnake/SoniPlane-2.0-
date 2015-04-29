@@ -17,7 +17,7 @@ public class ProjectFile extends ConfigFile {
 	}
 
 	public String getVersion(){
-		return getField("versionID").getValue();
+		return getField("version").getValue();
 	}
 
 	public String getType(){

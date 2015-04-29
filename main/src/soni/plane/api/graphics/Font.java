@@ -7,6 +7,8 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import soni.plane.api.tools.FloatRectangle;
 import soni.plane.gs.Loader;
 import soni.plane.gs.Main;
+import soni.plane.gs.tools.ConfigFile;
+import soni.plane.gs.util.FileUtil;
 import soni.plane.gs.util.ProjectManager;
 
 import java.io.File;
@@ -127,15 +129,26 @@ public final class Font {
 			/* create a new Font with same parameters */
 			soni.plane.gs.draw.Font.newFont(getBitmapFont(
 					Loader.getDataFolder() + "res/fonts/" + name + ".ttf", size), name + " " + size + "px", c);
-			return name + " " + size + "px";
 		}
 
 		/* else return a failure */
-		return null;
+		return name + " " + size + "px";
 	}
+
+    /* create a new Font from file */
+    public static String createFont(String file){
+		/* set file name first */
+        String f = Loader.getDataFolder() +"res/graphics/"+ ProjectManager.get().getDraw().getContext().getLocation() +"/"+ file;
+		/* create config */
+        ConfigFile cfg = new ConfigFile(f, ConfigFile.READ, FileUtil.read(f));
+
+        /* return new font using parameters */
+        return createFont(cfg.getField("font").getValue(), Integer.parseInt(cfg.getField("size").getValue()), new Color(file));
+    }
 
 	/* generate BitmapFont from filename */
 	private static BitmapFont getBitmapFont(String file, int size) {
+        /* mew parameter object */
 		FreeTypeFontGenerator.FreeTypeFontParameter f = new FreeTypeFontGenerator.FreeTypeFontParameter();
 		f.magFilter = Texture.TextureFilter.Nearest;
 		f.minFilter = Texture.TextureFilter.Nearest;
@@ -143,28 +156,9 @@ public final class Font {
 		f.size = size;
 		f.flip = true;
 
+        /* return new BitMapFont based on TrueTypeFont and parameters */
 		return new FreeTypeFontGenerator(Gdx.files.absolute(file)).generateFont(f);
 	}
-
-	/* gets style as string representation */
-	private static String getStyleString(int style) {
-		switch (style){
-			case PLAIN:
-				return "PLAIN";
-
-			case BOLD:
-				return "BOLD";
-
-			case ITALIC:
-				return "ITALIC";
-
-			case BOLD | ITALIC:
-				return "BOLD & ITALIC";
-		}
-
-		return "ILLEGAL";
-	}
-
 
 	/* find all installed fonts */
 	public static String[] getInstalledFonts(){
@@ -196,7 +190,7 @@ public final class Font {
 	public static void clearFont() {
 		setContext(null);
 	}
-	
+
 	/* gets FloatRectangle from current project and current Window context */
 	private static FloatRectangle getRectangle() {
 		return ProjectManager.get().getDraw().getContext().getRectangle();

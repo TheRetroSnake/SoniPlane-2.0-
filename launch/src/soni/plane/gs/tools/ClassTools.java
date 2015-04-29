@@ -126,7 +126,7 @@ public class ClassTools {
     }
 
     /* load SoniPlane and execute */
-    public static void loadSoniPlane() {
+    public static void loadCore() {
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -139,9 +139,9 @@ public class ClassTools {
                     loadJAR(Loader.getDataFolder() +"lib/gdx-backend-lwjgl.jar");
 					loadJAR(Loader.getDataFolder() +"lib/gdx-freetype.jar");
                     /* load SoniPlane JAR to memory */
-                    loadJAR(Loader.getDataFolder() +"sp.jar");
+                    loadJAR(Loader.getDataFolder() +"lib/core.jar");
                     /* get correct Class */
-                    Class<?> cls = ClassContainer.get(Loader.getDataFolder() +"sp.jar", "soni.plane.gs.Main");
+                    Class<?> cls = ClassContainer.get(Loader.getDataFolder() +"lib/core.jar", "soni.plane.gs.Main");
 
                     /* start a new timer to hide the main window right after program launches */
                     new Timer().schedule(new TimerTask() {

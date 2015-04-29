@@ -1,6 +1,5 @@
 package soni.plane.gs;
 
-import soni.plane.api.exceptions.*;
 import soni.plane.api.exceptions.IllegalStateException;
 import soni.plane.api.graphics.*;
 import soni.plane.api.implement.Window;
@@ -44,7 +43,7 @@ public class ProjectMenu implements Window {
 		resize((int)AppTools.getWidth(), (int)AppTools.getHeight());
 
 		/* create font used */
-		font = Font.createFont("DejaVuSans", 20, new Color(1f, 1f, 1f, 1f));
+		font = Font.createFont("DejaVuSans.txt");
 		/* init projects list */
 		pr = new ArrayList<Project>();
 
@@ -272,7 +271,7 @@ public class ProjectMenu implements Window {
 
 			@Override
 			boolean listFolder(String s) {
-				return false;
+				return true;
 			}
 
 			@Override
@@ -280,7 +279,7 @@ public class ProjectMenu implements Window {
 				boolean ends = ext.equals("SPP");
 
 				if(ends){
-					addFile(file);
+					addFile(new File(file).getName().replace(".SPP", ""));
 				}
 
 				return ends;

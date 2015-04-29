@@ -43,6 +43,7 @@ public class ProjectManager {
 		return create(new ProjectFile(file, ConfigFile.READ | ConfigFile.WRITE));
 	}
 
+	/* delete project */
 	public static void delete(int off){
 		proj.remove(off);
 	}
@@ -58,6 +59,16 @@ public class ProjectManager {
 	public static ProjectData setProject(int id){
 		current = id;
 		return get();
+	}
+
+	public static int get(ProjectData pr){
+		for(int i = 0;i < proj.size();i ++){
+			if(pr == proj.get(i)){
+				return i;
+			}
+		}
+
+		return -1;
 	}
 
 	public static int getProject(){

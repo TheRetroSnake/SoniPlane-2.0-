@@ -1,7 +1,7 @@
 package soni.plane.api.java.util;
 
 @SuppressWarnings("deprecation")
-public  final class Date {
+public final class Date {
 	/* stored reference */
 	private java.util.Date date;
 
@@ -12,15 +12,15 @@ public  final class Date {
 	/* methods to get values from Date
 	 * And yes, I am aware all of these are deprecated. So what? */
 	public int getYear(){
-		return date.getYear();
+		return date.getYear() + 1900;
 	}
 
 	public int getMonth(){
-		return date.getMonth();
+		return date.getMonth() + 1;
 	}
 
 	public int getDay(){
-		return date.getDay();
+		return date.getDate();
 	}
 
 	public int getHour(){

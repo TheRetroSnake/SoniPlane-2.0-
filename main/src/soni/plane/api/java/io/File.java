@@ -4,6 +4,7 @@ import soni.plane.api.java.util.Date;
 import soni.plane.gs.Main;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 public final class File {
 	/* File context */
@@ -72,6 +73,24 @@ public final class File {
 	/* get file name */
 	public String getName() {
 		return f.getName();
+	}
+
+	/* get file extension */
+	public String getExtension(){
+		if(f.isFile()){
+			/* split the file for each period */
+			String[] split = f.getName().split("\\.");
+
+			/* if there were no periods, return empty */
+			if(split.length == 0){
+				return "";
+			}
+
+			/* return extension */
+			return split[split.length -1];
+		}
+
+		return "";
 	}
 
 	/* list files at target directory */

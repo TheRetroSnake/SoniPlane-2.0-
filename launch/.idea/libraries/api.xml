@@ -1,14 +1,13 @@
 <component name="libraryTable">
   <library name="api">
     <CLASSES>
-      <root url="jar://$USER_HOME$/AppData/Roaming/.SoniPlane/sp.jar!/" />
+      <root url="jar://$USER_HOME$/AppData/Roaming/.SoniPlane/lib/core.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
     <excluded>
-      <root url="jar://$USER_HOME$/AppData/Roaming/.SoniPlane/sp.jar!/org" />
-      <root url="jar://$USER_HOME$/AppData/Roaming/.SoniPlane/sp.jar!/META-INF" />
-      <root url="jar://$USER_HOME$/AppData/Roaming/.SoniPlane/sp.jar!/soni/plane/gs" />
+      <root url="jar://$USER_HOME$/AppData/Roaming/.SoniPlane/lib/core.jar!/META-INF" />
+      <root url="jar://$USER_HOME$/AppData/Roaming/.SoniPlane/lib/core.jar!/soni/plane/gs" />
     </excluded>
   </library>
 </component>

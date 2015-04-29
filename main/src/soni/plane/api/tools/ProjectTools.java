@@ -33,7 +33,7 @@ public final class ProjectTools {
 
 	/* get ID of current context */
 	public static int getID(){
-		return ProjectManager.getProject();
+		return ProjectManager.get(context);
 	}
 
 	/* make project with ID the project used */

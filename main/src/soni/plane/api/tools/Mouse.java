@@ -2,7 +2,11 @@ package soni.plane.api.tools;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import soni.plane.gs.draw.WindowManager;
 import soni.plane.gs.util.ProjectManager;
+
+import java.util.Arrays;
+import java.util.Collections;
 
 public final class Mouse {
 	/* enum for mouse buttons available */
@@ -30,7 +34,7 @@ public final class Mouse {
 
 	/* check if mouse is inside a rectangle */
 	public static boolean compare(FloatRectangle rect){
-		return (getX() >= rect.x) && (getX() < (rect.x + rect.width)) && (getY() >= rect.y) && (getY() < (rect.y + rect.height));
+		return checkOrder() && (getX() >= rect.x) && (getX() < (rect.x + rect.width)) && (getY() >= rect.y) && (getY() < (rect.y + rect.height));
 	}
 
 	/* check if mouse is inside a rectangle between two points */
@@ -49,8 +53,45 @@ public final class Mouse {
 			endY = y1;
 		}
 
+		/* if there is window in the way, return false */
+		if(!checkOrder()){
+			return false;
+		}
+
 		/* finally compare the values and return the answer */
 		return (getX() >= startX) && (getX() < endX) && (getY() >= startY) && (getY() < endY);
+	}
+
+	/* make sure another Window isn't on top of current one */
+	private static boolean checkOrder() {
+		/* get current context */
+		WindowManager ctx = ProjectManager.get().getDraw().getContext();
+
+		/* get list of all WindowManagers and reverse the list
+		 * this is done, so that bigger priority entries are read first */
+		WindowManager[] l = ProjectManager.get().getDraw().createFullList();
+		Collections.reverse(Arrays.asList(l));
+
+		/* loop for all WindowManagers */
+		for(WindowManager w : l){
+			/* if context is same as this WindowManager, test passed */
+			if(ctx.getWindow() == w.getWindow()){
+				return true;
+			}
+
+			/* check if Window is clipping mouse position */
+			if(w.getRectangle() != null && checkClip(w.getRectangle())){
+				return false;
+			}
+		}
+
+		/* it should not be possible to come here, something went wrong */
+		return false;
+	}
+
+	/* check if mouse cursor is inside another Window */
+	private static boolean checkClip(FloatRectangle r) {
+		return (getX() >= r.x) && (getX() < r.width) && (getY() >= r.y) && (getY() < r.height);
 	}
 
 	/* if button was pressed */

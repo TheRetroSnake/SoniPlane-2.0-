@@ -4,20 +4,20 @@ import soni.plane.gs.Main;
 
 public class IllegalArgumentException extends Exception {
 	public IllegalArgumentException(Object o, boolean forceExit){
-		super(o.toString());
+		super(o.getClass().getName());
 
 		if(forceExit){
         	/* Fatal error, close tool */
-			Main.exit(plugin.class + ": IllegalArgumentException("+ o.toString() +")");
+			Main.exit(plugin.class + ": IllegalArgumentException("+ o.getClass().getName() +")");
 		}
 	}
 
 	public IllegalArgumentException(Object o, String info, boolean forceExit){
-		super(o.toString() +": "+ info);
+		super(o.getClass().getName() +": "+ info);
 
 		if(forceExit){
         	/* Fatal error, close tool */
-			Main.exit(plugin.class + ": IllegalArgumentException("+ o.toString()+ ": "+ info +")");
+			Main.exit(plugin.class + ": IllegalArgumentException("+ o.getClass().getName() +": "+ info +")");
 		}
 	}
 }

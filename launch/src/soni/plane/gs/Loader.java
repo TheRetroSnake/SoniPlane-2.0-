@@ -69,7 +69,7 @@ public class Loader implements Runnable {
 
         /* load SoniPlane */
         display("Loading SoniPlane");
-        ClassTools.loadSoniPlane();
+        ClassTools.loadCore();
     }
 
     /* display text */

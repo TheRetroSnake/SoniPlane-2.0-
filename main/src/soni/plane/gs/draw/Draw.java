@@ -114,7 +114,7 @@ public class Draw {
     }
 
 	/* create list of WindowManagers with global and non-global Windows */
-	private WindowManager[] createFullList() {
+	public WindowManager[] createFullList() {
 		ArrayList<WindowManager> w = new ArrayList<WindowManager>();
 
 		/* first do global ones */
