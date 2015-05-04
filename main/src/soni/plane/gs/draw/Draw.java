@@ -6,6 +6,7 @@ import soni.plane.api.exceptions.plugin;
 import soni.plane.api.implement.Window;
 import soni.plane.api.java.io.File;
 import soni.plane.api.tools.Arguments;
+import soni.plane.api.tools.Keyboard;
 import soni.plane.gs.Main;
 import soni.plane.gs.tools.*;
 
@@ -20,7 +21,7 @@ public class Draw {
     /* latest WindowManager context */
     private static WindowManager context;
 
-    /* initialize this list */
+	/* initialize this list */
     public Draw init() {
         /* create new ArrayList */
         win = new ArrayList<WindowManager>();
@@ -57,7 +58,7 @@ public class Draw {
 			if (f.exists() && f.isFile()) {
 				/* load required libraries first */
 				loadRequiredLibs(ClassContainer.get().getUnloadedConfig(file, "module.spc").
-						getField("libraries").getValue().split("#"));
+						getField("libraries").getValue().split(";"));
 				/* load the library */
 				ClassTools.loadLibrary(f.getFilePath());
 			}
@@ -66,9 +67,9 @@ public class Draw {
 
     /* creates new WindowManager from give JAR path */
     private WindowManager generateWindowManager(String JARPath) throws IOException, URISyntaxException {
-				/* load required libraries first */
+		/* load required libraries first */
 		loadRequiredLibs(ClassContainer.get().getUnloadedConfig(ClassTools.getJARPath(JARPath), "module.spc").
-				getField("libraries").getValue().split("#"));
+				getField("libraries").getValue().split(";"));
 
         /* make sure the module is loaded */
 		ClassTools.loadModule(JARPath);
@@ -237,7 +238,10 @@ public class Draw {
 	public void rmvWindow(WindowManager w) {
 		w.dispose();
 		win.remove(w);
+
 		/* remove arguments */
 		Arguments.remove(w.getWindow());
+		/* remove listeners */
+		Keyboard.rmvAllListener(w.getWindow());
 	}
 }

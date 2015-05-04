@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import org.lwjgl.opengl.GL11;
+import soni.plane.gs.util.Keyboard;
 import soni.plane.gs.util.ProjectManager;
 
 public class Main implements ApplicationListener {
@@ -71,6 +72,7 @@ public class Main implements ApplicationListener {
         /* init components and create project which is used to render anything for now */
 		ProjectManager.create(null);
 		ProjectManager.setProject(0);
+		Gdx.input.setInputProcessor(new Keyboard());
 
 		/* set up various internal shits */
 		camera = new OrthographicCamera();

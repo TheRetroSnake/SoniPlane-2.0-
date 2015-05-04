@@ -28,6 +28,8 @@ public class FileSelector implements Window{
 	private String font;
 	/* selected file */
 	private String selected = "";
+	/* textfield */
+	private TextField tx;
 
 	/* constants */
 	private final int BORDER_WIDTH = 40;
@@ -117,7 +119,11 @@ public class FileSelector implements Window{
 				new Color("fade.txt"), };
 
 		/* create the X icon */
-		XIco = new Sprite(new Texture("X.png").setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Nearest)).setSize(32, 32).setPosition(-100, -100).setFlip(true, false);
+		XIco = new Sprite(new Texture("X.png").setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Nearest)).
+				setSize(32, 32).setPosition(-100, -100).setFlip(true, false);
+
+		/* initialize TextField */
+		tx = new TextField("", this);
 	}
 
 	/* creates new FileList object with information of files in directory */
@@ -139,6 +145,10 @@ public class FileSelector implements Window{
 		drawFolders();
 		/* render files */
 		drawFiles();
+
+		FloatRectangle f = new FloatRectangle(BORDER_WIDTH, AppTools.getHeight() - BORDER_WIDTH - 20, AppTools.getWidth() - (BORDER_WIDTH * 2), 20);
+		Render.drawRect(f, Mouse.compare(f) ? Mouse.isPressed(Mouse.Buttons.LEFT) ? colors[1] : colors[2] : colors[0]);
+		Font.drawCentered(tx.getText(), f);
 	}
 
 	/* render files */
@@ -165,7 +175,8 @@ public class FileSelector implements Window{
 		FloatRectangle fr = new FloatRectangle(BORDER_WIDTH, y, AppTools.getWidth() - (BORDER_WIDTH * 2), 20);
 
 		/* render rectangle */
-		Render.drawRect(fr, Mouse.compare(fr) || selected.equals(f.getFilePath()) ? Mouse.isPressed(Mouse.Buttons.LEFT) ? colors[1] : colors[2] : colors[0]);
+		Render.drawRect(fr,
+				Mouse.compare(fr) || selected.equals(f.getFilePath()) ? Mouse.isPressed(Mouse.Buttons.LEFT) ? colors[1] : colors[2] : colors[0]);
 
 		/* draw texts */
 		Font.drawCentered(f.getName(), new FloatRectangle(fr.x + 20, y, Font.getWidth(f.getName()) + 4, fr.height));

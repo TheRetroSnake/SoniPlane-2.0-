@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../TextField/embed.TextField.iml" filepath="$PROJECT_DIR$/../TextField/embed.TextField.iml" />
       <module fileurl="file://$PROJECT_DIR$/launch.iml" filepath="$PROJECT_DIR$/launch.iml" />
       <module fileurl="file://$PROJECT_DIR$/../main/main.iml" filepath="$PROJECT_DIR$/../main/main.iml" />
       <module fileurl="file://$PROJECT_DIR$/../window.FileSelector/window.FileSelector.iml" filepath="$PROJECT_DIR$/../window.FileSelector/window.FileSelector.iml" />
@@ -9,4 +10,3 @@
     </modules>
   </component>
 </project>
-

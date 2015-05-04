@@ -70,3 +70,7 @@ launch/.idea/scopes/scope_settings.xml
 launch/.idea/encodings.xml
 launch/.idea/dictionaries/Natsumi.xml
 launch/.idea/dictionaries/Leevi.xml
+launch/out/production/TextField/module.spc
+launch/out/production/window.FileSelector/module.spc
+launch/out/production/embed.TextField/module.spc
+launch/out/production/window.FileSelector/module.spc

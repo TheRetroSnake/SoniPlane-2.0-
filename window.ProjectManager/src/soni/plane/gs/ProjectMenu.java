@@ -266,7 +266,7 @@ public class ProjectMenu implements Window {
 		FileSelectorController fsc = new FileSelectorController() {
 			@Override
 			boolean listFile(String s, String ext) {
-				return ext.equals("SPP");
+				return ext.equalsIgnoreCase("SPP");
 			}
 
 			@Override
@@ -276,10 +276,10 @@ public class ProjectMenu implements Window {
 
 			@Override
 			boolean openFile(String file, String ext) {
-				boolean ends = ext.equals("SPP");
+				boolean ends = ext.equalsIgnoreCase("SPP");
 
 				if(ends){
-					addFile(new File(file).getName().replace(".SPP", ""));
+					addFile(new File(file).getName().replace(".SPP", "").replace(".spp", ""));
 				}
 
 				return ends;
@@ -297,7 +297,7 @@ public class ProjectMenu implements Window {
 
 			@Override
 			String createFile(String file) {
-				return file.endsWith(".SPP") ? file : file +".SPP";
+				return file.endsWith(".SPP") || file.endsWith(".spp") ? file : file +".SPP";
 			}
 
 			@Override

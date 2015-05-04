@@ -8,6 +8,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="PROVIDED" name="api" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="TextFields" level="project" />
   </component>
 </module>
-
