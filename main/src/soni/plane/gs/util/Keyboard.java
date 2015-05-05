@@ -17,7 +17,7 @@ public class Keyboard implements InputProcessor {
 		listeners.remove(listener);
 	}
 
-	public static KeyListener[] getListeners() {
+	private static KeyListener[] getListeners() {
 		return listeners.toArray(new KeyListener[listeners.size()]);
 	}
 
@@ -91,5 +91,14 @@ public class Keyboard implements InputProcessor {
 		}
 
 		return true;
+	}
+
+	/* remove loaded listener */
+	public static void remove(KeyListener k){
+		listeners.remove(k);
+	}
+
+	public static int getAmount(){
+		return getListeners().length;
 	}
 }

@@ -92,4 +92,9 @@ public final class Arguments {
 
 		return false;
 	}
+
+	/* used by the debugger */
+	public static int getAmount(){
+		return stored.size();
+	}
 }

@@ -10,6 +10,8 @@ import soni.plane.api.tools.Keyboard;
 public class TextField {
 	/* text inputted here currently */
 	private String text;
+	/* if TextField is focused at the moment */
+	private boolean focused = false;
 
 	/* create this Textfield */
 	public TextField(String text, Window parent){
@@ -26,5 +28,15 @@ public class TextField {
 	public TextField setText(String text){
 		this.text = text;
 		return this;
+	}
+
+	/* set whether app is focused or not */
+	public void setFocus(boolean f){
+		focused = f;
+	}
+
+	/* return if focused or now */
+	public boolean hasFocus(){
+		return focused;
 	}
 }

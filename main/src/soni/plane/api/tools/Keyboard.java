@@ -3,6 +3,7 @@ package soni.plane.api.tools;
 import soni.plane.api.implement.Window;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public final class Keyboard {
 	/* list of added listeners so far */
@@ -35,6 +36,8 @@ public final class Keyboard {
 			/* if Window is same */
 			if(lb.w == w){
 				list.remove(lb);
+				/* remove it from other place too */
+				soni.plane.gs.util.Keyboard.remove(lb.ls);
 			}
 		}
 	}

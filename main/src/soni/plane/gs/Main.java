@@ -26,6 +26,11 @@ public class Main implements ApplicationListener {
 	/* if system is running */
 	private static boolean isRunning = true;
 
+	/* variables for debugger */
+	public static int drawCallsThisFrame;
+	public static int drawCallsInTotal;
+	public static long renderTime;
+
 	private static String getTitle() {
         return "SoniPlane "+ version;
     }
@@ -88,6 +93,8 @@ public class Main implements ApplicationListener {
 
 	@Override
 	public void render() {
+		long nano = System.nanoTime();
+
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL11.GL_COLOR_BUFFER_BIT);
 		camera.update();
@@ -98,6 +105,10 @@ public class Main implements ApplicationListener {
 		batch.end();
 
 		ProjectManager.get().getDraw().logic(Gdx.graphics.getDeltaTime());
+
+		drawCallsThisFrame = batch.renderCalls;
+		drawCallsInTotal = batch.totalRenderCalls;
+		renderTime = System.nanoTime() - nano;
 	}
 
 	@Override

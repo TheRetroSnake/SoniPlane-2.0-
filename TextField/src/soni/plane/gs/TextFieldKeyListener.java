@@ -23,14 +23,16 @@ public class TextFieldKeyListener extends KeyListener {
 	/* TODO: improve this shit */
 	@Override
 	public void keyTyped(char c) {
-		if(c == '\b'){
-			if(ctx.getText().length() >= 1) {
-				ctx.setText(ctx.getText().substring(0, ctx.getText().length() - 1));
+		if(ctx.hasFocus()) {
+			if (c == '\b') {
+				if (ctx.getText().length() >= 1) {
+					ctx.setText(ctx.getText().substring(0, ctx.getText().length() - 1));
+				}
+				return;
 			}
-			return;
-		}
 
-		ctx.setText(ctx.getText() + c);
+			ctx.setText(ctx.getText() + c);
+		}
 	}
 
 	@Override

@@ -33,6 +33,16 @@ public class WindowManager {
 		loc = location.replace("/", ".");
     }
 
+	/* here to only serve custom purposes!
+	 * Use with care! */
+	@Deprecated
+	public WindowManager(){
+		win = null;
+		loc = null;
+		conf = null;
+		showBorders = false;
+	}
+
     public void logic() {
         /* if we did not yet do, initialize the Window */
         if(!initialized){

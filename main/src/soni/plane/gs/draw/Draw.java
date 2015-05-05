@@ -6,6 +6,7 @@ import soni.plane.api.exceptions.plugin;
 import soni.plane.api.implement.Window;
 import soni.plane.api.java.io.File;
 import soni.plane.api.tools.Arguments;
+import soni.plane.api.tools.FloatRectangle;
 import soni.plane.api.tools.Keyboard;
 import soni.plane.gs.Main;
 import soni.plane.gs.tools.*;
@@ -14,6 +15,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 
+@SuppressWarnings("deprecation")
 public class Draw {
     /* list of all WindowManagers */
     private ArrayList<WindowManager> win;
@@ -108,8 +110,18 @@ public class Draw {
 			}
         }
 
+		/* hack to avoid NullPointerExceptions from Font class */
+		setContext(new WindowManager() {
+			@Override
+			public FloatRectangle getRectangle(){
+				return new FloatRectangle();
+			}
+		});
+		/* render Debug information */
+		Debug.render();
+
         /* finally clear context */
-        setContext(null);
+		setContext(null);
 	    soni.plane.api.graphics.Font.clearFont();
 		return this;
     }
@@ -165,10 +177,10 @@ public class Draw {
 		return this;
     }
 
-	/* add Window
-	 * this should NOT be used, but instead addWindow(String)
+	/** add Window
+	 * this should NOT be used, but instead addWindow(String, Object[])
 	 * it does everything for you and leaves less room for error
-	 * only use this method if you want to supply a pseudo-Window
+	 * use this method ONLY if you want to supply a pseudo-Window
 	 * and you can provide all necessary data */
 	@Deprecated
     public Window addWindow(Window w, ConfigFile c, String location, boolean global){
